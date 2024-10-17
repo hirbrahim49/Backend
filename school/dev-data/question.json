@@ -1,0 +1,32 @@
+[
+    {
+        "name":"saheeed",
+        "category":  "pre-school",
+        "subjects":[   
+        ]
+    },
+    {
+        "name":"ibrahim",
+        "category":  "col-school",
+        "subjects":[   
+        ]
+    },
+    {
+        "name":"ibrahim",
+        "category":  "software-engineering",
+        "subjects":[   
+        ]
+    },
+    {
+        "name":"ibrahim",
+        "category":  "civil-engineering",
+        "subjects":[   
+        ]
+    },
+    {
+        "name":"ibrahim",
+        "category":  "electrical-engineering",
+        "subjects":[   
+        ]
+    }
+]
