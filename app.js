@@ -15,7 +15,11 @@ import cors from "cors"
 // Initialize express app
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Update this with your frontend's URL
+  credentials: true
+}));
+;
 
 
 // Middlewares for body parsing
