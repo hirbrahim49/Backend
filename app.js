@@ -16,11 +16,12 @@ import cors from "cors"
 const app = express();
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Update this with your frontend's URL
-  credentials: true
+  origin: 'http://localhost:3000',
+  credentials: true,
 }));
-;
 
+;
+// 'http://localhost:3000'
 
 // Middlewares for body parsing
 app.use(express.json()); // For parsing JSON data
