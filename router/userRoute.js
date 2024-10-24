@@ -18,7 +18,7 @@ userRouter.route('/login').post(authController.login);
 userRouter.route('/logout').post(authController.logout);
 
 
-userRouter.route("/").get(getAllUser);
+userRouter.route("/").get(authController.protect,authController.restrictTo('teacher'),getAllUser);
 userRouter.get('/me', getMe, getUser);
 
 export default userRouter;

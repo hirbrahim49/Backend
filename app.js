@@ -11,9 +11,12 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';  // Make sure the import is correct
 import xss from "xss-clean";
 import multer from 'multer'; // Middleware for handling multipart/form-data
-
+import cors from "cors"
 // Initialize express app
 const app = express();
+
+app.use(cors());
+
 
 // Middlewares for body parsing
 app.use(express.json()); // For parsing JSON data
@@ -41,6 +44,10 @@ app.use(mongoSanitize()); // Applying MongoDB sanitization
 app.use(xss()); // Prevent Cross-Site Scripting
 
 // Routes
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
+
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/questions", questionRouter);
 
