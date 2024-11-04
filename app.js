@@ -20,6 +20,9 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use(express.static('public'));
+
+
 ;
 // 'http://localhost:3000'
 

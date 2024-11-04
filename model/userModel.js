@@ -14,10 +14,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     lowercase: true
   },
-  photo:{
-    type:String,
-    default:'default.jpg',
-  },
+  photo: {
+    type: String,
+    default: '/img/users/default.jpg',
+  },  
   role: {
     type: String,
     enum: ['student', 'admin','teacher'],
