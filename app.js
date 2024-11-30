@@ -12,6 +12,7 @@ import mongoSanitize from 'express-mongo-sanitize';  // Make sure the import is 
 import xss from "xss-clean";
 import multer from 'multer'; // Middleware for handling multipart/form-data
 import cors from "cors"
+
 // Initialize express app
 const app = express();
 
@@ -21,10 +22,6 @@ app.use(cors({
 }));
 
 app.use(express.static('public'));
-
-
-;
-// 'http://localhost:3000'
 
 // Middlewares for body parsing
 app.use(express.json()); // For parsing JSON data
@@ -37,13 +34,15 @@ const upload = multer();
 app.use(helmet()); // Security headers
 app.use(cookieParser()); // Middleware for parsing cookies
 
-// Apply rate limiting (limits requests per IP address)
-const limiter = rateLimit({
-  max: 100, // Max number of requests
-  windowMs: 60 * 60 * 1000, // 1 hour window
-  message: "Too many requests from this IP, please try again in an hour"
-});
-app.use("/api", limiter);
+// Apply rate limiting (limits requests per IP address) only in production
+if (process.env.NODE_ENV === 'production') {
+  const limiter = rateLimit({
+    max: 500, // Increased max requests per IP
+    windowMs: 10 * 60 * 1000, // 10 minutes window
+    message: "Too many requests from this IP, please try again in 10 minutes"
+  });
+  app.use("/api", limiter); // Apply limiter to all routes under /api
+}
 
 // DATA SANITIZATION against NoSQL query injection
 app.use(mongoSanitize()); // Applying MongoDB sanitization
